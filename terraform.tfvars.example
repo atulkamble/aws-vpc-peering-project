@@ -1,0 +1,13 @@
+# Copy this file to terraform.tfvars and update with your values
+# cp terraform.tfvars.example terraform.tfvars
+
+aws_region          = "ap-south-1"
+vpc_a_cidr          = "10.0.0.0/16"
+vpc_b_cidr          = "192.168.0.0/16"
+subnet_a_cidr       = "10.0.1.0/24"
+subnet_b_cidr       = "192.168.1.0/24"
+availability_zone_a = "ap-south-1a"
+availability_zone_b = "ap-south-1b"
+ami_id              = "ami-0e670eb768a5fc3d4"  # Amazon Linux 2023 for ap-south-1
+instance_type       = "t2.micro"
+key_name            = "mykey"  # Replace with your actual key pair name
