@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
-  default     = "ap-south-1"
+  default     = "us-east-1"
 }
 
 variable "vpc_a_cidr" {
@@ -31,19 +31,19 @@ variable "subnet_b_cidr" {
 variable "availability_zone_a" {
   description = "Availability zone for VPC A"
   type        = string
-  default     = "ap-south-1a"
+  default     = "us-east-1a"
 }
 
 variable "availability_zone_b" {
   description = "Availability zone for VPC B"
   type        = string
-  default     = "ap-south-1b"
+  default     = "us-east-1b"
 }
 
 variable "ami_id" {
   description = "AMI ID for EC2 instances (Amazon Linux 2023)"
   type        = string
-  default     = "ami-0e670eb768a5fc3d4"
+  default     = "ami-0fa3fe0fa7920f68e"
 }
 
 variable "instance_type" {
