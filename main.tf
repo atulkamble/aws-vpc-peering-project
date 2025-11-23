@@ -36,11 +36,6 @@ resource "aws_internet_gateway" "igw_a" {
 resource "aws_route_table" "rt_a" {
   vpc_id = aws_vpc.vpc_a.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw_a.id
-  }
-
   tags = {
     Name = "RT-A"
   }
@@ -142,11 +137,6 @@ resource "aws_internet_gateway" "igw_b" {
 resource "aws_route_table" "rt_b" {
   vpc_id = aws_vpc.vpc_b.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw_b.id
-  }
-
   tags = {
     Name = "RT-B"
   }
@@ -228,8 +218,22 @@ resource "aws_vpc_peering_connection" "peer" {
 }
 
 # -----------------------------
-# ROUTES FOR PEERING
+# ROUTES
 # -----------------------------
+# Internet routes
+resource "aws_route" "internet_a" {
+  route_table_id         = aws_route_table.rt_a.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw_a.id
+}
+
+resource "aws_route" "internet_b" {
+  route_table_id         = aws_route_table.rt_b.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw_b.id
+}
+
+# Peering routes
 resource "aws_route" "route_a_to_b" {
   route_table_id            = aws_route_table.rt_a.id
   destination_cidr_block    = aws_vpc.vpc_b.cidr_block
